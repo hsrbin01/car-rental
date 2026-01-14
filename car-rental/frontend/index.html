@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enjoy Rent a Car</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo"><i class="fas fa-car"></i> Enjoy Rent a Car</h1>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+                <a href="#cars" class="nav-link"><i class="fas fa-car-side"></i> Cars</a>
+                <a href="#booking" class="nav-link"><i class="fas fa-calendar-check"></i> Book Now</a>
+                <a href="#contact" class="nav-link"><i class="fas fa-phone"></i> Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Your Perfect Ride,</h2>
+            <h1>Just a Click Away</h1>
+            <p class="hero-subtitle">Skip the hassle of traditional car rental. Get instant access to premium vehicles with flexible booking and transparent pricing.</p>
+            
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('cars')">
+                    <i class="fas fa-search"></i> Browse Cars
+                </button>
+                <button class="btn btn-secondary" onclick="scrollToSection('booking')">
+                    <i class="fas fa-calendar-alt"></i> Book Now
+                </button>
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>No Hidden Fees</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Instant Confirmation</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>24/7 Support</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Free Cancellation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cars Section -->
+    <section id="cars" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Vehicles</h2>
+                <p class="section-subtitle">Explore our most popular rental options, perfect for business trips, family vacations, or weekend getaways</p>
+            </div>
+            
+            <div class="cars-grid" id="carsContainer">
+                <!-- Cars will be loaded here by JavaScript -->
+            </div>
+            
+            <div class="section-footer">
+                <button class="btn btn-outline" onclick="loadAllCars()">
+                    <i class="fas fa-eye"></i> View All Cars
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="section booking-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Book Your Car</h2>
+                <p class="section-subtitle">Complete your reservation - we'll confirm within minutes</p>
+            </div>
+            
+            <div class="booking-container">
+                <form id="bookingForm" class="booking-form">
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" placeholder="Enter your first name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" placeholder="Enter your last name" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3><i class="fas fa-address-book"></i> Contact Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" placeholder="your.email@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" placeholder="+1 (234) 567-8900" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3><i class="fas fa-car"></i> Rental Details</h3>
+                        <div class="form-group">
+                            <label for="carSelect">Select Vehicle *</label>
+                            <select id="carSelect" required>
+                                <option value="">Choose a vehicle</option>
+                                <!-- Options will be added by JavaScript -->
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pickupDate">Pick-up Date *</label>
+                                <input type="date" id="pickupDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="returnDate">Return Date *</label>
+                                <input type="date" id="returnDate" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="days">Number of Days *</label>
+                            <input type="number" id="days" min="1" value="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="totalPrice">Total Price</label>
+                            <div class="price-display" id="totalPrice">$0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-check">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">
+                                I agree to the Terms and Conditions and Privacy Policy. *
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-submit">
+                        <i class="fas fa-check"></i> Complete Reservation
+                    </button>
+                </form>
+                
+                <div id="bookingSuccess" class="success-card hidden">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Booking Confirmed!</h3>
+                    <p>Your reservation has been successfully submitted.</p>
+                    <div class="booking-details">
+                        <p><strong>Booking ID:</strong> <span id="bookingId">-</span></p>
+                        <p><strong>Status:</strong> <span class="status-confirmed">Confirmed</span></p>
+                    </div>
+                    <button class="btn btn-outline" onclick="resetForm()">
+                        <i class="fas fa-plus"></i> Make Another Booking
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title">Need Help?</h2>
+            <p class="section-subtitle">Our customer support team is available 24/7</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h3>Call Us</h3>
+                    <p>+1 (234) 567-8900</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>support@enjoyrentacar.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Working Hours</h3>
+                    <p>24/7 Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3><i class="fas fa-car"></i> Enjoy Rent a Car</h3>
+                    <p>Your perfect ride, just a click away.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#cars">Cars</a>
+                    <a href="#booking">Booking</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Enjoy Rent a Car. All rights reserved.</p>
+                <p>Made with <i class="fas fa-heart" style="color: #e74c3c;"></i> for Web Development Course</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="script.js"></script>
+</body>
+</html>
